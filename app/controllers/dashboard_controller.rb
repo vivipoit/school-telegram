@@ -1,7 +1,8 @@
 class DashboardController < ApplicationController
   def index
+    @courses = Course.list_for(authenticated_user)
+
     if authenticated_user.administration?
-      @courses = Course.all
       @new_course = Course.new
       @teachers = User.faculty
       @students = User.student
