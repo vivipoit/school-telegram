@@ -10,6 +10,8 @@ class Course < ApplicationRecord
       all
     when :student
       includes(:students).where(course_students: { student_id: user.id })
+    when :faculty
+      where(teacher_id: user.id).or(where(teacher_assistant_id: user.id))
     else
       []
     end
