@@ -1,1 +1,9 @@
 <h1>Administration Dashboard</h1>
+
+<%= tag.div(flash[:alert]) if flash[:alert] %>
+
+<h2>Courses</h2>
+<%= render 'courses/list' %>
+
+<h2>Create new course</h2>
+<%= render 'courses/form' %>

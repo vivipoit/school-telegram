@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_06_220551) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_06_234624) do
+  create_table "course_students", force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.integer "student_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_course_students_on_course_id"
+    t.index ["student_id"], name: "index_course_students_on_student_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "subject"
+    t.integer "teacher_id", null: false
+    t.integer "teacher_assistant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_assistant_id"], name: "index_courses_on_teacher_assistant_id"
+    t.index ["teacher_id"], name: "index_courses_on_teacher_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -29,5 +48,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_06_220551) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "course_students", "courses"
+  add_foreign_key "course_students", "users", column: "student_id"
+  add_foreign_key "courses", "users", column: "teacher_assistant_id"
+  add_foreign_key "courses", "users", column: "teacher_id"
   add_foreign_key "sessions", "users"
 end
