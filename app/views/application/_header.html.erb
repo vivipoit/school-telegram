@@ -1,0 +1,11 @@
+<div class="spec-header">
+  <h1><%= content_for(:title) %></h1>
+
+  <% if authenticated? %>
+    <%= authenticated_user.email_address %>
+    <%= authenticated_user.role %>
+    <%= link_to 'Sign out', sign_out_path %>
+  <% end %>
+</div>
+
+<%= tag.div(flash[:alert]) if flash[:alert] %>

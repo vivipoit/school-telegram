@@ -1,6 +1,4 @@
-<h1>Administration Dashboard</h1>
-
-<%= tag.div(flash[:alert]) if flash[:alert] %>
+<% content_for(:title) { 'Administration Dashboard' } %>
 
 <h2>Courses</h2>
 <%= render 'courses/list' %>
