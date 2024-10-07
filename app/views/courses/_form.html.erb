@@ -1,0 +1,7 @@
+<%= simple_form_for @new_course do |f| %>
+  <%= f.input :subject %>
+  <%= f.association :teacher, label_method: :email_address, include_blank: false %>
+  <%= f.association :teacher_assistant, label_method: :email_address %>
+  <%= f.association :students, label_method: :email_address, as: :check_boxes %>
+  <%= f.button :submit %>
+<% end %>
