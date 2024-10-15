@@ -38,6 +38,7 @@ gem "kamal", ">= 2.0.0.rc2", require: false
 gem "thruster", require: false
 
 gem "simple_form"
+gem "faraday"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -52,6 +53,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "capybara"
   gem "factory_bot_rails"
+  gem "webmock"
 end
 
 group :development do
