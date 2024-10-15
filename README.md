@@ -1,6 +1,6 @@
 # School Telegram
 
-A Rails 8 app that integrates with Telegram to help schools facilitate communication between teachers and students.
+A Rails 8 app that uses [telegram-client](https://github.com/vivipoit/telegram-client) to allow school administrators to create Telegram groups for each course.
 
 ## Testing
 
