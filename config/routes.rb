@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resource :session, except: [ :destroy ]
   resources :passwords, param: :token
-  resources :courses, only: [ :create ]
+  resources :courses, only: [ :create ] do
+    member do
+      post :create_telegram_group
+    end
+  end
 
   get "sign_out" => "sessions#destroy", as: :sign_out
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

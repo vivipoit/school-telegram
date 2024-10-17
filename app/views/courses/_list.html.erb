@@ -1,5 +1,10 @@
 <ul>
   <% @courses.each do |course| %>
-    <li><%= course.subject %> <%= course.teacher.email_address %> <%= course.students.count %></li>
+    <li>
+      <%= course.subject %>
+      <%= course.teacher.email_address %>
+      <%= course.students.count %>
+      <%= course_telegram_group_link(course) %>
+    </li>
   <% end %>
 </ul>
