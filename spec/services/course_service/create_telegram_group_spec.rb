@@ -9,6 +9,17 @@ describe CourseService::CreateTelegramGroup do
       expect(TelegramClient).not_to have_received(:create_group)
     end
 
+    it 'generates group and link titles based on course information' do
+      allow(TelegramClient).to receive(:create_group).and_return({ something: 'irrelevant' })
+      allow(DateTime).to receive(:current).and_return('2024-10-31T23:59:59+00:00')
+      teacher = create(:user, :faculty, email_address: 'this-teacher@faculty.com')
+      course = create(:course, id: 549, subject: 'PE', teacher: teacher)
+
+      CourseService::CreateTelegramGroup.new(course).call
+
+      expect(TelegramClient).to have_received(:create_group).with('#549 PE this-teacher@faculty.com', '#549 2024-10-31T23:59:59+00:00')
+    end
+
     it 'returns false when TelegramClient returns empty hash' do
       allow(TelegramClient).to receive(:create_group).and_return({})
       course = create(:course)
