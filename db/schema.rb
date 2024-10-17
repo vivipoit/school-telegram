@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_06_234624) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_17_194407) do
   create_table "course_students", force: :cascade do |t|
     t.integer "course_id", null: false
     t.integer "student_id", null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_06_234624) do
     t.integer "teacher_assistant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "telegram_group_link"
     t.index ["teacher_assistant_id"], name: "index_courses_on_teacher_assistant_id"
     t.index ["teacher_id"], name: "index_courses_on_teacher_id"
   end
