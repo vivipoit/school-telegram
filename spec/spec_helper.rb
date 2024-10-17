@@ -13,4 +13,9 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  config.before(type: :feature) do
+    stub_request(:post, "http://www.telegram-client.com/")
+      .to_return(status: 200, body: { invite_link: 'https://t.me/a-fun-link' }.to_json, headers: {})
+  end
 end
